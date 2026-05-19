@@ -48,15 +48,10 @@
                                 <i class="fas fa-edit"></i>
                             </a>
                             @if ($usuario->id !== auth()->id())
-                            <form action="{{ route('usuarios.destroy', $usuario) }}"
-                                method="POST" class="d-inline"
-                                onsubmit="return confirm('¿Deseas eliminar este usuario?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" title="Eliminar">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
+                            <a href="{{ route('usuarios.show', $usuario) }}"
+                                class="btn btn-danger btn-sm" title="Eliminar">
+                                <i class="fas fa-trash"></i>
+                            </a>
                             @endif
                         </td>
                     </tr>

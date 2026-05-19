@@ -52,4 +52,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(Veterinario::class, 'usuario_id');
     }
+
+    /**
+     * Verifica si el usuario tiene registros asociados que impidan su eliminación.
+     * (El perfil de veterinario no cuenta, ya que se elimina en cascada).
+     */
+    public function hasDependencies(): bool
+    {
+        // Aquí se agregarán comprobaciones a futuro (ej. $this->citas()->count() > 0)
+        return false;
+    }
 }
