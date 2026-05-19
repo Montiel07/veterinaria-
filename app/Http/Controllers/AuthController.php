@@ -20,7 +20,11 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($creadenciales)) {
-            return to_route('home');
+            if (Auth::user()->rol === 'administrador') {
+                return to_route('home_admin');
+            } else {
+                return to_route('home');
+            }
         } else {
             return to_route('login');
         }
@@ -34,5 +38,9 @@ class AuthController extends Controller
 
     public function home() {
         return view('modules/dashboard/home');
+    }
+
+    public function homeAdmin() {
+        return view('modules/dashboard/home_admin');
     }
 }

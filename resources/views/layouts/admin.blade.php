@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Sistema de Gestión Veterinaria">
+    <meta name="description" content="Sistema de Gestión Veterinaria - Administración">
     <meta name="author" content="">
 
-    <title>@yield('titulo_pagina', 'Veterinaria') - Sistema</title>
+    <title>@yield('titulo_pagina', 'Administración') - Sistema</title>
 
     <!-- Fontawesome -->
     <link href="{{ asset('startbootstrap/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -28,7 +28,7 @@
     <div id="wrapper">
 
         {{-- Sidebar --}}
-        @include('layouts.partials.sidebar')
+        @include('layouts.partials.admin.sidebar')
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -37,7 +37,7 @@
             <div id="content">
 
                 {{-- Topbar --}}
-                @include('layouts.partials.topbar')
+                @include('layouts.partials.admin.topbar')
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -51,7 +51,7 @@
             <!-- End of Main Content -->
 
             {{-- Footer --}}
-            @include('layouts.partials.footer')
+            @include('layouts.partials.admin.footer')
 
         </div>
         <!-- End of Content Wrapper -->
@@ -65,7 +65,7 @@
     </a>
 
     {{-- Modal de Logout --}}
-    @include('layouts.partials.logout_modal')
+    @include('layouts.partials.admin.logout_modal')
 
     <!-- Bootstrap core JS -->
     <script src="{{ asset('startbootstrap/vendor/jquery/jquery.min.js') }}"></script>

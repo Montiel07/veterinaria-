@@ -13,10 +13,20 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
+        // Crear usuario administrador
         User::create([
             'name'     => 'admin',
             'email'    => 'admin@admin.com',
             'password' => Hash::make('admin'),
+            'rol'      => 'administrador',
+        ]);
+
+        // Crear usuario veterinario
+        User::create([
+            'name'     => 'veterinario',
+            'email'    => 'vet@vet.com',
+            'password' => Hash::make('vet123'),
+            'rol'      => 'veterinario',
         ]);
     }
 }
