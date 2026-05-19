@@ -2,14 +2,21 @@
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->
+    @hasSection('hide_sidebar')
+    @else
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
     </button>
+    @endif
 
     <!-- Breadcrumb / Page Title -->
     <span class="text-muted font-weight-bold d-none d-sm-inline-block">
         Panel de Administración
     </span>
+
+    <a href="{{ route('expedientes.index') }}" class="btn btn-outline-primary btn-sm ml-4 shadow-sm">
+        <i class="fas fa-folder-open mr-1"></i> Expedientes
+    </a>
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">

@@ -28,7 +28,10 @@
     <div id="wrapper">
 
         {{-- Sidebar --}}
-        @include('layouts.partials.sidebar')
+        @hasSection('hide_sidebar')
+        @else
+            @include('layouts.partials.sidebar')
+        @endif
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">

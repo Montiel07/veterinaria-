@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('titulo_pagina', 'Dashboard Administrador')
+@section('hide_sidebar', true)
 
 @section('contenido')
     <!-- Page Heading -->
@@ -72,5 +73,12 @@
             </div>
         </div>
 
+    </div>
+
+    <!-- Espacio para la Imagen Principal -->
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <img src="{{ asset('img/logo_veterinaria.png') }}" alt="Logo Veterinaria Santa María" class="img-fluid" style="max-height: 400px; opacity: 0.9;">
+        </div>
     </div>
 @endsection

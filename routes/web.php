@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\ExpedienteController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware("guest")->group(function () {
@@ -24,4 +25,9 @@ Route::middleware("auth")->group(function () {
 
     // Módulo Usuarios
     Route::resource('usuarios', UsuarioController::class);
+
+    // Módulo Expedientes
+    Route::get('/expedientes', [ExpedienteController::class, 'index'])->name('expedientes.index');
+    Route::get('/expedientes/buscar-ajax', [ExpedienteController::class, 'buscarAjax'])->name('expedientes.buscar_ajax');
+    Route::get('/expedientes/{id}', [ExpedienteController::class, 'show'])->name('expedientes.show');
 });
