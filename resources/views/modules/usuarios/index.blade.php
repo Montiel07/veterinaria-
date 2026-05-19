@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 
 @section('titulo_pagina', 'Usuarios')
 
@@ -25,6 +25,7 @@
                         <th>#</th>
                         <th>Nombre</th>
                         <th>Correo</th>
+                        <th>Rol</th>
                         <th>Registrado</th>
                         <th class="text-center">Acciones</th>
                     </tr>
@@ -35,6 +36,11 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $usuario->name }}</td>
                         <td>{{ $usuario->email }}</td>
+                        <td>
+                            <span class="badge badge-{{ $usuario->rol === 'administrador' ? 'danger' : 'info' }}">
+                                {{ ucfirst($usuario->rol) }}
+                            </span>
+                        </td>
                         <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
                         <td class="text-center">
                             <a href="{{ route('usuarios.edit', $usuario) }}"
@@ -56,7 +62,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="5" class="text-center text-muted">No hay usuarios registrados.</td>
+                        <td colspan="6" class="text-center text-muted">No hay usuarios registrados.</td>
                     </tr>
                     @endforelse
                 </tbody>

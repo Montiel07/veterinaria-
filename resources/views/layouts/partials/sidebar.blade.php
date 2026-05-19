@@ -45,22 +45,6 @@
     </li>
 
     <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading - Administración -->
-    <div class="sidebar-heading">
-        Administración
-    </div>
-
-    <!-- Nav Item - Usuarios -->
-    <li class="nav-item {{ request()->routeIs('usuarios*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('usuarios.index') }}">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Usuarios</span>
-        </a>
-    </li>
-
-    <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
     <!-- Sidebar Toggler -->

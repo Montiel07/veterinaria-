@@ -25,12 +25,14 @@ class UsuarioController extends Controller
             'name'     => 'required|string|max:255',
             'email'    => 'required|email|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
+            'rol'      => 'required|in:administrador,veterinario',
         ]);
 
         User::create([
             'name'     => $request->name,
             'email'    => $request->email,
             'password' => Hash::make($request->password),
+            'rol'      => $request->rol,
         ]);
 
         return redirect()->route('usuarios.index')
@@ -48,10 +50,12 @@ class UsuarioController extends Controller
             'name'     => 'required|string|max:255',
             'email'    => 'required|email|unique:users,email,' . $usuario->id,
             'password' => 'nullable|string|min:6|confirmed',
+            'rol'      => 'required|in:administrador,veterinario',
         ]);
 
         $usuario->name  = $request->name;
         $usuario->email = $request->email;
+        $usuario->rol   = $request->rol;
         if ($request->filled('password')) {
             $usuario->password = Hash::make($request->password);
         }

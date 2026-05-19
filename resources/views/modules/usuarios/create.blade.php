@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 
 @section('titulo_pagina', 'Nuevo Usuario')
 
@@ -41,6 +41,14 @@
                         class="form-control @error('password') is-invalid @enderror"
                         placeholder="Mínimo 6 caracteres">
                     @error('password')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="rol">Rol <span class="text-danger">*</span></label>
+                    <select name="rol" id="rol" class="form-control @error('rol') is-invalid @enderror">
+                        <option value="veterinario" {{ old('rol') == 'veterinario' ? 'selected' : '' }}>Veterinario</option>
+                        <option value="administrador" {{ old('rol') == 'administrador' ? 'selected' : '' }}>Administrador</option>
+                    </select>
+                    @error('rol')<div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="password_confirmation">Confirmar Contraseña <span class="text-danger">*</span></label>
