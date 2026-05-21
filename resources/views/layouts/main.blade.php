@@ -40,7 +40,10 @@
             <div id="content">
 
                 {{-- Topbar --}}
-                @include('layouts.partials.topbar')
+                @hasSection('hide_topbar')
+                @else
+                    @include('layouts.partials.topbar')
+                @endif
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">

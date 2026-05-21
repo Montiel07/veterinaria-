@@ -14,9 +14,6 @@
         Panel de Administración
     </span>
 
-    <a href="{{ route('expedientes.index') }}" class="btn btn-outline-primary btn-sm ml-4 shadow-sm">
-        <i class="fas fa-folder-open mr-1"></i> Expedientes
-    </a>
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">

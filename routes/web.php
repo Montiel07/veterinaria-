@@ -33,4 +33,6 @@ Route::middleware("auth")->group(function () {
     Route::get('/expedientes/{id}', [ExpedienteController::class, 'show'])->name('expedientes.show');
     Route::get('/expedientes/{id}/consultas', [ConsultaController::class, 'show'])->name('expedientes.consultas');
     Route::get('/expedientes/{mascota_id}/consultas/{consulta_id}', [ConsultaController::class, 'detalle'])->name('expedientes.consultas.detalle');
+    Route::get('/expedientes/{mascota_id}/consultas/{consulta_id}/diagnostico', [ConsultaController::class, 'diagnostico'])->name('expedientes.consultas.diagnostico');
+    Route::post('/expedientes/{mascota_id}/consultas/{consulta_id}/diagnostico', [ConsultaController::class, 'guardarDiagnostico'])->name('expedientes.consultas.guardar_diagnostico');
 });

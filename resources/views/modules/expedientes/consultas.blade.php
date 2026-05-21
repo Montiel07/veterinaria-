@@ -104,18 +104,7 @@
                                                 <p class="mb-0 font-weight-bold">{{ $consulta->talla ? $consulta->talla . ' cm' : 'N/A' }}</p>
                                             </div>
                                         </div>
-                                        <div class="mb-3">
-                                            <small class="text-uppercase text-muted font-weight-bold">Diagnóstico:</small>
-                                            <p class="mb-0 bg-light p-2 rounded border-left border-info font-italic">
-                                                {{ $consulta->diagnostico }}
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <small class="text-uppercase text-muted font-weight-bold">Tratamiento / Indicaciones:</small>
-                                            <p class="mb-0 bg-light p-2 rounded border-left border-success">
-                                                {{ $consulta->tratamiento }}
-                                            </p>
-                                        </div>
+
                                     </div>
                                 </div>
                             @endforeach

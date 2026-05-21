@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
-@section('titulo_pagina', 'Detalle de Consulta - ' . $mascota->nombre)
+@section('titulo_pagina', 'Diagnóstico - ' . $mascota->nombre)
 
 @php
-    $consultaNumero = $mascota->consultas->sortBy('fecha_consulta')->values()->search(fn($c) => $c->id === $consultaSeleccionada->id) + 1;
+    $consultaNumero = $mascota->consultas->sortBy('fecha_consulta')->values()->search(fn($c) => $c->id === $consulta->id) + 1;
 @endphp
 
 @section('estilos')
@@ -137,6 +137,23 @@
         .editor-card-body {
             padding: 1.5rem;
         }
+        .form-control-custom {
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 6px !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 1.1rem !important;
+            color: #1e293b !important;
+            line-height: 1.6 !important;
+            padding: 1rem !important;
+            background-color: #ffffff !important;
+            transition: all 0.2s ease !important;
+            min-height: 250px;
+        }
+        .form-control-custom:focus {
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+            outline: none !important;
+        }
         .btn-custom-save {
             background-color: #3b82f6 !important;
             border: 1px solid #3b82f6 !important;
@@ -159,37 +176,6 @@
         .btn-custom-save i {
             font-size: 0.875rem;
         }
-
-        /* CKEditor Custom Premium Styling */
-        .ck-editor {
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03) !important;
-            border-radius: 8px !important;
-            overflow: hidden !important;
-            margin-bottom: 1.5rem;
-        }
-        .ck.ck-toolbar {
-            background-color: #f8fafc !important;
-            border: 1px solid #e2e8f0 !important;
-            border-bottom: 1px solid #cbd5e1 !important;
-            padding: 0.5rem !important;
-        }
-        .ck-editor__editable_inline {
-            min-height: 300px !important;
-            font-family: 'Inter', sans-serif !important;
-            font-size: 1.05rem !important;
-            color: #1e293b !important;
-            line-height: 1.7 !important;
-            background-color: #ffffff !important;
-            padding: 1.5rem !important;
-        }
-        .ck.ck-content {
-            border: 1px solid #e2e8f0 !important;
-        }
-        .ck.ck-editor__main>.ck-editor__editable:focus {
-            border-color: #3b82f6 !important;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
-            outline: none !important;
-        }
     </style>
 @endsection
 
@@ -205,7 +191,7 @@
                 <span class="separator">/</span>
                 <a href="{{ route('expedientes.show', $mascota->id) }}">{{ $mascota->nombre }}</a>
                 <span class="separator">/</span>
-                <span class="active-item">Consulta #{{ $consultaNumero }}</span>
+                <a href="{{ route('expedientes.consultas.detalle', [$mascota->id, $consulta->id]) }}">Consulta #{{ $consultaNumero }}</a>
                 <span class="separator">/</span>
                 <span class="active-item">Diagnóstico</span>
             </div>
@@ -235,9 +221,9 @@
                     </div>
                 </div>
                 <div>
-                    <span class="badge-consultation">
-                        <i class="fas fa-calendar-alt mr-2"></i> Consulta del {{ $consultaSeleccionada->fecha_consulta->format('d/m/Y') }}
-                    </span>
+                    <a href="{{ route('expedientes.consultas.detalle', [$mascota->id, $consulta->id]) }}" class="badge-consultation">
+                        <i class="fas fa-calendar-alt mr-2"></i> Consulta del {{ $consulta->fecha_consulta->format('d/m/Y') }}
+                    </a>
                 </div>
             </div>
         </div>
@@ -250,10 +236,10 @@
                 </h6>
             </div>
             <div class="editor-card-body">
-                <form action="{{ route('expedientes.consultas.guardar_diagnostico', [$mascota->id, $consultaSeleccionada->id]) }}" method="POST">
+                <form action="{{ route('expedientes.consultas.guardar_diagnostico', [$mascota->id, $consulta->id]) }}" method="POST">
                     @csrf
                     <div class="form-group mb-4">
-                        <textarea name="diagnostico" id="diagnostico" placeholder="Escriba el diagnóstico de la consulta aquí...">{{ old('diagnostico', $consultaSeleccionada->diagnostico) }}</textarea>
+                        <textarea name="diagnostico" id="diagnostico" rows="8" class="form-control form-control-custom shadow-sm" placeholder="Escriba el diagnóstico de la consulta aquí...">{{ old('diagnostico', strip_tags($consulta->diagnostico)) }}</textarea>
                         @error('diagnostico')
                             <small class="text-danger font-weight-bold mt-2 d-block">{{ $message }}</small>
                         @enderror
@@ -268,31 +254,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('scripts')
-    <!-- CKEditor 5 Classic Build and Spanish Translation CDNs -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/translations/es.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            ClassicEditor
-                .create(document.querySelector('#diagnostico'), {
-                    language: 'es',
-                    toolbar: {
-                        items: [
-                            'heading', '|',
-                            'bold', 'italic', 'link', '|',
-                            'bulletedList', 'numberedList', 'outdent', 'indent', '|',
-                            'blockQuote', 'insertTable', '|',
-                            'undo', 'redo'
-                        ]
-                    },
-                    placeholder: 'Escriba el diagnóstico detallado de la consulta médica aquí...'
-                })
-                .catch(error => {
-                    console.error('Error al inicializar CKEditor 5:', error);
-                });
-        });
-    </script>
 @endsection

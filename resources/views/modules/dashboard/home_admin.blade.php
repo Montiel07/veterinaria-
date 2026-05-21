@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('titulo_pagina', 'Dashboard Administrador')
-@section('hide_sidebar', true)
 
 @section('contenido')
     <!-- Page Heading -->

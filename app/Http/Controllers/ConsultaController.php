@@ -36,4 +36,40 @@ class ConsultaController extends Controller
 
         return view('modules.expedientes.detalle', compact('mascota', 'consultaSeleccionada', 'antecedentes'));
     }
+
+    /**
+     * Show the view to create or edit the diagnosis of a specific consultation.
+     */
+    public function diagnostico($mascota_id, $consulta_id)
+    {
+        $mascota = Mascota::with(['dueno'])->findOrFail($mascota_id);
+        $consulta = $mascota->consultas()->findOrFail($consulta_id);
+
+        return view('modules.expedientes.diagnostico', compact('mascota', 'consulta'));
+    }
+
+    /**
+     * Save/update the diagnosis of a specific consultation.
+     */
+    public function guardarDiagnostico(Request $request, $mascota_id, $consulta_id)
+    {
+        $request->validate([
+            'diagnostico' => 'nullable|string',
+        ]);
+
+        $mascota = Mascota::findOrFail($mascota_id);
+        $consulta = $mascota->consultas()->findOrFail($consulta_id);
+
+        // Check if there is already a saved diagnosis
+        $esNuevo = is_null($consulta->diagnostico) || trim($consulta->diagnostico) === '';
+
+        $consulta->update([
+            'diagnostico' => $request->input('diagnostico'),
+        ]);
+
+        $mensaje = $esNuevo ? 'Se guardó la nueva información.' : 'Se actualizó con éxito.';
+
+        return redirect()->route('expedientes.consultas.detalle', [$mascota_id, $consulta_id])
+            ->with('success', $mensaje);
+    }
 }
