@@ -10,9 +10,9 @@
     @endif
 
     <!-- Breadcrumb / Page Title -->
-    <span class="text-muted font-weight-bold d-none d-sm-inline-block">
+    <a href="{{ route('home') }}" class="text-muted font-weight-bold d-none d-sm-inline-block text-decoration-none" style="cursor: pointer;">
         Sistema de Veterinaria
-    </span>
+    </a>
 
     <a href="{{ route('expedientes.index') }}" class="btn btn-outline-primary btn-sm ml-4 shadow-sm">
         <i class="fas fa-folder-open mr-1"></i> Expedientes

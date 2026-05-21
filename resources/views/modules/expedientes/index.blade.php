@@ -25,14 +25,7 @@
 
                     <div class="row justify-content-center mb-5">
                         <div class="col-md-8 col-lg-6 position-relative text-left">
-                            <div class="input-group input-group-lg shadow-sm">
-                                <input type="text" id="inputBuscar" class="form-control" placeholder="Buscar paciente por folio, mascota o dueño..." autocomplete="off" aria-label="Buscar expediente">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary px-4" type="button">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
+                            <input type="text" id="inputBuscar" class="form-control form-control-lg shadow-sm" placeholder="Buscar paciente por folio, mascota o dueño..." autocomplete="off" aria-label="Buscar expediente">
 
                             <!-- Contenedor flotante de resultados -->
                             <div id="resultadosBusqueda" class="list-group shadow position-absolute w-100 mt-1 d-none" style="z-index: 1000; max-height: 320px; overflow-y: auto;">
@@ -129,7 +122,8 @@ $(document).ready(function() {
     // Acción al hacer clic en "Ver Consultas"
     $btnVerConsultas.on('click', function() {
         if (selectedMascotaId) {
-            window.location.href = `/expedientes/${selectedMascotaId}`;
+            const baseUrl = "{{ url('/') }}";
+            window.location.href = `${baseUrl}/expedientes/${selectedMascotaId}/consultas`;
         }
     });
 

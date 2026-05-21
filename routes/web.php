@@ -5,6 +5,7 @@ use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ExpedienteController;
+use App\Http\Controllers\ConsultaController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware("guest")->group(function () {
@@ -30,4 +31,6 @@ Route::middleware("auth")->group(function () {
     Route::get('/expedientes', [ExpedienteController::class, 'index'])->name('expedientes.index');
     Route::get('/expedientes/buscar-ajax', [ExpedienteController::class, 'buscarAjax'])->name('expedientes.buscar_ajax');
     Route::get('/expedientes/{id}', [ExpedienteController::class, 'show'])->name('expedientes.show');
+    Route::get('/expedientes/{id}/consultas', [ConsultaController::class, 'show'])->name('expedientes.consultas');
+    Route::get('/expedientes/{mascota_id}/consultas/{consulta_id}', [ConsultaController::class, 'detalle'])->name('expedientes.consultas.detalle');
 });

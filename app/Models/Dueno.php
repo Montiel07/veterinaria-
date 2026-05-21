@@ -25,6 +25,7 @@ class Dueno extends Model
     {
         return [
             'nombre_completo' => $this->nombre_completo,
+            'telefono' => $this->telefono,
         ];
     }
 }

@@ -12,35 +12,72 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    <!-- Nav Item - Inicio -->
-    <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('home') }}">
-            <i class="fas fa-fw fa-home"></i>
-            <span>Inicio</span>
+    <!-- Heading - Consulta -->
+    <div class="sidebar-heading mt-3">
+        Consulta Actual
+    </div>
+
+    <!-- Nav Item - Diagnóstico de la consulta -->
+    <li class="nav-item">
+        <a class="nav-link" href="#diagnostico">
+            <i class="fas fa-fw fa-stethoscope"></i>
+            <span>Diagnóstico de la consulta</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Tratamiento de la consulta -->
+    <li class="nav-item">
+        <a class="nav-link" href="#tratamiento">
+            <i class="fas fa-fw fa-prescription-bottle-alt"></i>
+            <span>Tratamiento de la consulta</span>
         </a>
     </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading - Clínica -->
+    <!-- Heading - Antecedentes -->
     <div class="sidebar-heading">
-        Clínica
+        Historial Clínico
     </div>
 
-    <!-- Nav Item - Direcciones -->
-    <li class="nav-item {{ request()->routeIs('direcciones*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('direcciones.index') }}">
-            <i class="fas fa-fw fa-map-marker-alt"></i>
-            <span>Direcciones</span>
+    <!-- Nav Item - Antecedentes Alergias -->
+    <li class="nav-item">
+        <a class="nav-link" href="#antecedentes_alergias">
+            <i class="fas fa-fw fa-allergies"></i>
+            <span>Antecedentes Alergias</span>
         </a>
     </li>
 
-    <!-- Nav Item - Pacientes -->
-    <li class="nav-item {{ request()->routeIs('pacientes*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('pacientes.index') }}">
-            <i class="fas fa-fw fa-dog"></i>
-            <span>Pacientes</span>
+    <!-- Nav Item - Antecedentes Lesiones -->
+    <li class="nav-item">
+        <a class="nav-link" href="#antecedentes_lesiones">
+            <i class="fas fa-fw fa-crutches"></i>
+            <span>Antecedentes Lesiones</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Antecedentes Patológicos -->
+    <li class="nav-item">
+        <a class="nav-link" href="#antecedentes_patologicos">
+            <i class="fas fa-fw fa-file-medical-alt"></i>
+            <span>Antecedentes Patológicos</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading - Nutrición -->
+    <div class="sidebar-heading">
+        Nutrición
+    </div>
+
+    <!-- Nav Item - Historial Alimentación -->
+    <li class="nav-item">
+        <a class="nav-link" href="#historial_alimentacion">
+            <i class="fas fa-fw fa-utensils"></i>
+            <span>Historial Alimentación</span>
         </a>
     </li>
 
