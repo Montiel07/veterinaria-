@@ -38,14 +38,18 @@ class ConsultaController extends Controller
     }
 
     /**
-     * Show the view to create or edit the diagnosis of a specific consultation.
+     * Show the view to create or edit the treatment of a specific consultation.
      */
-    public function diagnostico($mascota_id, $consulta_id)
+    public function tratamiento($mascota_id, $consulta_id)
     {
-        $mascota = Mascota::with(['dueno'])->findOrFail($mascota_id);
-        $consulta = $mascota->consultas()->findOrFail($consulta_id);
+        $mascota = Mascota::with(['dueno', 'consultas'])->findOrFail($mascota_id);
+        $consultaSeleccionada = $mascota->consultas->firstWhere('id', $consulta_id);
 
-        return view('modules.expedientes.diagnostico', compact('mascota', 'consulta'));
+        if (!$consultaSeleccionada) {
+            abort(404, 'Consulta no encontrada.');
+        }
+
+        return view('modules.expedientes.tratamiento', compact('mascota', 'consultaSeleccionada'));
     }
 
     /**
@@ -70,6 +74,30 @@ class ConsultaController extends Controller
         $mensaje = $esNuevo ? 'Se guardó la nueva información.' : 'Se actualizó con éxito.';
 
         return redirect()->route('expedientes.consultas.detalle', [$mascota_id, $consulta_id])
+            ->with('success', $mensaje);
+    }
+
+    /**
+     * Save/update the treatment of a specific consultation.
+     */
+    public function guardarTratamiento(Request $request, $mascota_id, $consulta_id)
+    {
+        $request->validate([
+            'tratamiento' => 'nullable|string',
+        ]);
+
+        $mascota = Mascota::findOrFail($mascota_id);
+        $consulta = $mascota->consultas()->findOrFail($consulta_id);
+
+        $esNuevo = is_null($consulta->tratamiento) || trim($consulta->tratamiento) === '';
+
+        $consulta->update([
+            'tratamiento' => $request->input('tratamiento'),
+        ]);
+
+        $mensaje = $esNuevo ? 'Tratamiento guardado exitosamente.' : 'Tratamiento actualizado con éxito.';
+
+        return redirect()->route('expedientes.consultas.tratamiento', [$mascota_id, $consulta_id])
             ->with('success', $mensaje);
     }
 }

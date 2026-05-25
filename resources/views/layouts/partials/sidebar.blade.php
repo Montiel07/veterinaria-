@@ -37,13 +37,16 @@
     .custom-sidebar .nav-item.active .nav-link {
         color: #ffffff !important;
         font-weight: 700 !important;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 6px;
     }
     .custom-sidebar .nav-item.active .nav-link i {
         color: #ffffff !important;
     }
     .custom-sidebar .nav-item .nav-link:hover {
         color: #ffffff !important;
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 6px;
     }
     .custom-sidebar .nav-item .nav-link:hover i {
         color: #ffffff !important;
@@ -66,16 +69,16 @@
     </div>
 
     <!-- Nav Item - Diagnóstico de la consulta -->
-    <li class="nav-item {{ request()->routeIs('expedientes.consultas.detalle') || request()->routeIs('expedientes.consultas.diagnostico') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ $currentMascotaId && $currentConsultaId ? route('expedientes.consultas.detalle', [$currentMascotaId, $currentConsultaId]) : '#diagnostico' }}">
+    <li class="nav-item {{ request()->routeIs('expedientes.consultas.detalle') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ $currentMascotaId && $currentConsultaId ? route('expedientes.consultas.detalle', [$currentMascotaId, $currentConsultaId]) : '#' }}">
             <i class="fas fa-file-alt"></i>
             <span>Diagnóstico</span>
         </a>
     </li>
 
     <!-- Nav Item - Tratamiento de la consulta -->
-    <li class="nav-item">
-        <a class="nav-link" href="#tratamiento">
+    <li class="nav-item {{ request()->routeIs('expedientes.consultas.tratamiento') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ $currentMascotaId && $currentConsultaId ? route('expedientes.consultas.tratamiento', [$currentMascotaId, $currentConsultaId]) : '#' }}">
             <i class="fas fa-briefcase-medical"></i>
             <span>Tratamiento</span>
         </a>
@@ -90,24 +93,24 @@
     </div>
 
     <!-- Nav Item - Antecedentes Alergias -->
-    <li class="nav-item">
-        <a class="nav-link" href="#antecedentes_alergias">
+    <li class="nav-item {{ request()->routeIs('expedientes.consultas.alergias') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ $currentMascotaId && $currentConsultaId ? route('expedientes.consultas.alergias', [$currentMascotaId, $currentConsultaId]) : '#' }}">
             <i class="fas fa-hand-holding-medical"></i>
             <span>Alergias</span>
         </a>
     </li>
 
     <!-- Nav Item - Antecedentes Lesiones -->
-    <li class="nav-item">
-        <a class="nav-link" href="#antecedentes_lesiones">
+    <li class="nav-item {{ request()->routeIs('expedientes.consultas.lesiones') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ $currentMascotaId && $currentConsultaId ? route('expedientes.consultas.lesiones', [$currentMascotaId, $currentConsultaId]) : '#' }}">
             <i class="fas fa-crutches"></i>
             <span>Lesiones</span>
         </a>
     </li>
 
     <!-- Nav Item - Antecedentes Patológicos -->
-    <li class="nav-item">
-        <a class="nav-link" href="#antecedentes_patologicos">
+    <li class="nav-item {{ request()->routeIs('expedientes.consultas.patologicos') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ $currentMascotaId && $currentConsultaId ? route('expedientes.consultas.patologicos', [$currentMascotaId, $currentConsultaId]) : '#' }}">
             <i class="fas fa-heart"></i>
             <span>Patológicos</span>
         </a>
@@ -122,8 +125,8 @@
     </div>
 
     <!-- Nav Item - Historial Alimentación -->
-    <li class="nav-item">
-        <a class="nav-link" href="#historial_alimentacion">
+    <li class="nav-item {{ request()->routeIs('expedientes.consultas.alimentacion') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ $currentMascotaId && $currentConsultaId ? route('expedientes.consultas.alimentacion', [$currentMascotaId, $currentConsultaId]) : '#' }}">
             <i class="fas fa-utensils"></i>
             <span>Alimentación</span>
         </a>

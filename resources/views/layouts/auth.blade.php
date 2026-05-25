@@ -13,16 +13,29 @@
     <!-- Fontawesome -->
     <link href="{{ asset('startbootstrap/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- SB Admin 2 CSS -->
+    <!-- SB Admin 2 CSS (para mantener compatibilidad con otros elementos) -->
     <link href="{{ asset('startbootstrap/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    <style>
+        /* Reset para que el body ocupe toda la pantalla sin márgenes del template */
+        html, body {
+            height: 100%;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow-x: hidden;
+        }
+        body {
+            background: transparent !important;
+        }
+    </style>
 
     @yield('estilos')
 </head>
 
-<body class="bg-gradient-primary">
+<body>
 
     @yield('contenido')
 
